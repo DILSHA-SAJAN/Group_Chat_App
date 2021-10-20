@@ -1,320 +1,340 @@
-define(['dart_sdk', 'packages/firebase_auth_platform_interface/firebase_auth_platform_interface.dart', 'packages/firebase/src/top_level.dart', 'packages/http_parser/src/http_date.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/firebase/src/storage.dart'], (function load__packages__firebase_auth_web__firebase_auth_web_dart(dart_sdk, packages__firebase_auth_platform_interface__firebase_auth_platform_interface$46dart, packages__firebase__src__top_level$46dart, packages__http_parser__src__http_date$46dart, packages__flutter__src__services__system_channels$46dart, packages__firebase__src__storage$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/cupertino/route.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__page_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__cupertino__route$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const firebase_auth_platform_interface = packages__firebase_auth_platform_interface__firebase_auth_platform_interface$46dart.firebase_auth_platform_interface;
-  const top_level = packages__firebase__src__top_level$46dart.src__top_level;
-  const http_date = packages__http_parser__src__http_date$46dart.src__http_date;
-  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
-  const auth = packages__firebase__src__storage$46dart.src__auth;
-  var firebase_auth_web = Object.create(dart.library);
-  var $map = dartx.map;
-  var $toList = dartx.toList;
+  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const route = packages__flutter__src__cupertino__route$46dart.src__cupertino__route;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  var page = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    PlatformUserInfoL: () => (T.PlatformUserInfoL = dart.constFn(dart.legacy(firebase_auth_platform_interface.PlatformUserInfo)))(),
-    EmailAuthCredentialL: () => (T.EmailAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.EmailAuthCredential)))(),
-    GoogleAuthCredentialL: () => (T.GoogleAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.GoogleAuthCredential)))(),
-    FacebookAuthCredentialL: () => (T.FacebookAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.FacebookAuthCredential)))(),
-    TwitterAuthCredentialL: () => (T.TwitterAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.TwitterAuthCredential)))(),
-    GithubAuthCredentialL: () => (T.GithubAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.GithubAuthCredential)))(),
-    PhoneAuthCredentialL: () => (T.PhoneAuthCredentialL = dart.constFn(dart.legacy(firebase_auth_platform_interface.PhoneAuthCredential)))(),
-    PlatformAuthResultL: () => (T.PlatformAuthResultL = dart.constFn(dart.legacy(firebase_auth_platform_interface.PlatformAuthResult)))(),
-    PlatformUserL: () => (T.PlatformUserL = dart.constFn(dart.legacy(firebase_auth_platform_interface.PlatformUser)))(),
-    PlatformIdTokenResultL: () => (T.PlatformIdTokenResultL = dart.constFn(dart.legacy(firebase_auth_platform_interface.PlatformIdTokenResult)))(),
-    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
-    FutureOfboolL: () => (T.FutureOfboolL = dart.constFn(async.Future$(T.boolL())))()
+  var T$ = {
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  var I = ["package:firebase_auth_web/firebase_auth_web.dart"];
-  var _getAuth = dart.privateName(firebase_auth_web, "_getAuth");
-  var _fromJsAdditionalUserInfo = dart.privateName(firebase_auth_web, "_fromJsAdditionalUserInfo");
-  var _fromJsUserInfo = dart.privateName(firebase_auth_web, "_fromJsUserInfo");
-  var _fromJsUser = dart.privateName(firebase_auth_web, "_fromJsUser");
-  var _fromJsUserCredential = dart.privateName(firebase_auth_web, "_fromJsUserCredential");
-  var _fromJsIdTokenResult = dart.privateName(firebase_auth_web, "_fromJsIdTokenResult");
-  var _getCurrentUserOrThrow = dart.privateName(firebase_auth_web, "_getCurrentUserOrThrow");
-  var _getCredential = dart.privateName(firebase_auth_web, "_getCredential");
-  firebase_auth_web.FirebaseAuthWeb = class FirebaseAuthWeb extends firebase_auth_platform_interface.FirebaseAuthPlatform {
-    static registerWith(registrar) {
-      firebase_auth_platform_interface.FirebaseAuthPlatform.instance = new firebase_auth_web.FirebaseAuthWeb.new();
-    }
-    [_getAuth](name) {
-      let app = top_level.app(name);
-      return top_level.auth(app);
-    }
-    [_fromJsAdditionalUserInfo](additionalUserInfo) {
-      return new firebase_auth_platform_interface.PlatformAdditionalUserInfo.new({isNewUser: additionalUserInfo.isNewUser, providerId: additionalUserInfo.providerId, username: additionalUserInfo.username, profile: additionalUserInfo.profile});
-    }
-    [_fromJsUserInfo](userInfo) {
-      return new firebase_auth_platform_interface.PlatformUserInfo.new({providerId: userInfo.providerId, uid: userInfo.providerId, displayName: userInfo.displayName, photoUrl: userInfo.photoURL, email: userInfo.email, phoneNumber: userInfo.phoneNumber});
-    }
-    [_fromJsUser](user) {
-      if (user == null) {
-        return null;
-      }
-      return new firebase_auth_platform_interface.PlatformUser.new({providerId: user.providerId, uid: user.uid, displayName: user.displayName, photoUrl: user.photoURL, email: user.email, phoneNumber: user.phoneNumber, creationTimestamp: http_date.parseHttpDate(user.metadata.creationTime).millisecondsSinceEpoch, lastSignInTimestamp: http_date.parseHttpDate(user.metadata.lastSignInTime).millisecondsSinceEpoch, isAnonymous: user.isAnonymous, isEmailVerified: user.emailVerified, providerData: user.providerData[$map](T.PlatformUserInfoL(), dart.bind(this, _fromJsUserInfo))[$toList]()});
-    }
-    [_fromJsUserCredential](credential) {
-      return new firebase_auth_platform_interface.PlatformAuthResult.new({user: this[_fromJsUser](credential.user), additionalUserInfo: this[_fromJsAdditionalUserInfo](credential.additionalUserInfo)});
-    }
-    [_fromJsIdTokenResult](idTokenResult) {
-      return new firebase_auth_platform_interface.PlatformIdTokenResult.new({token: idTokenResult.token, expirationTimestamp: idTokenResult.expirationTime.millisecondsSinceEpoch, authTimestamp: idTokenResult.authTime.millisecondsSinceEpoch, issuedAtTimestamp: idTokenResult.issuedAtTime.millisecondsSinceEpoch, claims: idTokenResult.claims, signInProvider: idTokenResult.signInProvider});
-    }
-    [_getCurrentUserOrThrow](auth) {
-      let user = auth.currentUser;
-      if (user == null) {
-        dart.throw(new message_codec.PlatformException.new({code: "USER_REQUIRED", message: "Please authenticate with Firebase first"}));
-      }
-      return user;
-    }
-    [_getCredential](credential) {
-      if (T.EmailAuthCredentialL().is(credential)) {
-        return auth.EmailAuthProvider.credential(credential.email, credential.password);
-      }
-      if (T.GoogleAuthCredentialL().is(credential)) {
-        return auth.GoogleAuthProvider.credential(credential.idToken, credential.accessToken);
-      }
-      if (T.FacebookAuthCredentialL().is(credential)) {
-        return auth.FacebookAuthProvider.credential(credential.accessToken);
-      }
-      if (T.TwitterAuthCredentialL().is(credential)) {
-        return auth.TwitterAuthProvider.credential(credential.authToken, credential.authTokenSecret);
-      }
-      if (T.GithubAuthCredentialL().is(credential)) {
-        return auth.GithubAuthProvider.credential(credential.token);
-      }
-      if (T.PhoneAuthCredentialL().is(credential)) {
-        return auth.PhoneAuthProvider.credential(credential.verificationId, credential.smsCode);
-      }
-      return null;
-    }
-    createUserWithEmailAndPassword(app, email, password) {
-      return async.async(T.PlatformAuthResultL(), (function* createUserWithEmailAndPassword() {
-        let auth = this[_getAuth](app);
-        let credential = (yield auth.createUserWithEmailAndPassword(email, password));
-        return this[_fromJsUserCredential](credential);
-      }).bind(this));
-    }
-    delete(app) {
-      return async.async(dart.void, (function* $delete() {
-        let auth = this[_getAuth](app);
-        let user = this[_getCurrentUserOrThrow](auth);
-        yield user.delete();
-      }).bind(this));
-    }
-    fetchSignInMethodsForEmail(app, email) {
-      let auth = this[_getAuth](app);
-      return auth.fetchSignInMethodsForEmail(email);
-    }
-    getCurrentUser(app) {
-      return async.async(T.PlatformUserL(), (function* getCurrentUser() {
-        let auth = this[_getAuth](app);
-        let currentUser = auth.currentUser;
-        return this[_fromJsUser](currentUser);
-      }).bind(this));
-    }
-    getIdToken(app, refresh) {
-      return async.async(T.PlatformIdTokenResultL(), (function* getIdToken() {
-        let auth = this[_getAuth](app);
-        let currentUser = auth.currentUser;
-        let idTokenResult = (yield currentUser.getIdTokenResult(refresh));
-        return this[_fromJsIdTokenResult](idTokenResult);
-      }).bind(this));
-    }
-    isSignInWithEmailLink(app, link) {
-      let auth = this[_getAuth](app);
-      return T.FutureOfboolL().value(auth.isSignInWithEmailLink(link));
-    }
-    linkWithCredential(app, credential) {
-      return async.async(T.PlatformAuthResultL(), (function* linkWithCredential() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        let firebaseCredential = this[_getCredential](credential);
-        let userCredential = (yield currentUser.linkWithCredential(firebaseCredential));
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    onAuthStateChanged(app) {
-      let auth = this[_getAuth](app);
-      return auth.onAuthStateChanged.map(T.PlatformUserL(), dart.bind(this, _fromJsUser));
-    }
-    reauthenticateWithCredential(app, credential) {
-      return async.async(T.PlatformAuthResultL(), (function* reauthenticateWithCredential() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        let firebaseCredential = this[_getCredential](credential);
-        let userCredential = (yield currentUser.reauthenticateWithCredential(firebaseCredential));
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    reload(app) {
-      return async.async(dart.void, (function* reload() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        yield currentUser.reload();
-      }).bind(this));
-    }
-    sendEmailVerification(app) {
-      return async.async(dart.void, (function* sendEmailVerification() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        yield currentUser.sendEmailVerification();
-      }).bind(this));
-    }
-    sendLinkToEmail(app, opts) {
-      let email = opts && 'email' in opts ? opts.email : null;
-      let url = opts && 'url' in opts ? opts.url : null;
-      let handleCodeInApp = opts && 'handleCodeInApp' in opts ? opts.handleCodeInApp : null;
-      let iOSBundleID = opts && 'iOSBundleID' in opts ? opts.iOSBundleID : null;
-      let androidPackageName = opts && 'androidPackageName' in opts ? opts.androidPackageName : null;
-      let androidInstallIfNotAvailable = opts && 'androidInstallIfNotAvailable' in opts ? opts.androidInstallIfNotAvailable : null;
-      let androidMinimumVersion = opts && 'androidMinimumVersion' in opts ? opts.androidMinimumVersion : null;
-      let auth = this[_getAuth](app);
-      let actionCodeSettings = {url: url, handleCodeInApp: handleCodeInApp, iOS: {bundleId: iOSBundleID}, android: {packageName: androidPackageName, installApp: androidInstallIfNotAvailable, minimumVersion: androidMinimumVersion}};
-      return auth.sendSignInLinkToEmail(email, actionCodeSettings);
-    }
-    sendPasswordResetEmail(app, email) {
-      return async.async(dart.void, (function* sendPasswordResetEmail() {
-        let auth = this[_getAuth](app);
-        yield auth.sendPasswordResetEmail(email);
-      }).bind(this));
-    }
-    setLanguageCode(app, language) {
-      return async.async(dart.void, (function* setLanguageCode() {
-        let auth = this[_getAuth](app);
-        auth.languageCode = language;
-      }).bind(this));
-    }
-    signInAnonymously(app) {
-      return async.async(T.PlatformAuthResultL(), (function* signInAnonymously() {
-        let auth = this[_getAuth](app);
-        let userCredential = (yield auth.signInAnonymously());
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    signInWithCredential(app, credential) {
-      return async.async(T.PlatformAuthResultL(), (function* signInWithCredential() {
-        let auth = this[_getAuth](app);
-        let firebaseCredential = this[_getCredential](credential);
-        let userCredential = (yield auth.signInWithCredential(firebaseCredential));
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    signInWithCustomToken(app, token) {
-      return async.async(T.PlatformAuthResultL(), (function* signInWithCustomToken() {
-        let auth = this[_getAuth](app);
-        let userCredential = (yield auth.signInWithCustomToken(token));
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    signInWithEmailAndLink(app, email, link) {
-      return async.async(T.PlatformAuthResultL(), (function* signInWithEmailAndLink() {
-        let auth = this[_getAuth](app);
-        let userCredential = (yield auth.signInWithEmailLink(email, link));
-        return this[_fromJsUserCredential](userCredential);
-      }).bind(this));
-    }
-    signOut(app) {
-      return async.async(dart.void, (function* signOut() {
-        let auth = this[_getAuth](app);
-        yield auth.signOut();
-      }).bind(this));
-    }
-    unlinkFromProvider(app, provider) {
-      return async.async(dart.void, (function* unlinkFromProvider() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        yield currentUser.unlink(provider);
-      }).bind(this));
-    }
-    updateEmail(app, email) {
-      return async.async(dart.void, (function* updateEmail() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        yield currentUser.updateEmail(email);
-      }).bind(this));
-    }
-    updatePassword(app, password) {
-      return async.async(dart.void, (function* updatePassword() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        yield currentUser.updatePassword(password);
-      }).bind(this));
-    }
-    updatePhoneNumberCredential(app, phoneAuthCredential) {
-      return async.async(dart.void, (function* updatePhoneNumberCredential() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        let credential = this[_getCredential](phoneAuthCredential);
-        yield currentUser.updatePhoneNumber(credential);
-      }).bind(this));
-    }
-    updateProfile(app, opts) {
-      let displayName = opts && 'displayName' in opts ? opts.displayName : null;
-      let photoUrl = opts && 'photoUrl' in opts ? opts.photoUrl : null;
-      return async.async(dart.void, (function* updateProfile() {
-        let auth = this[_getAuth](app);
-        let currentUser = this[_getCurrentUserOrThrow](auth);
-        let profile = {};
-        if (displayName != null) {
-          profile.displayName = displayName;
-        }
-        if (photoUrl != null) {
-          profile.photoURL = photoUrl;
-        }
-        yield currentUser.updateProfile(profile);
-      }).bind(this));
-    }
-    verifyPhoneNumber(app, opts) {
-      let phoneNumber = opts && 'phoneNumber' in opts ? opts.phoneNumber : null;
-      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
-      let forceResendingToken = opts && 'forceResendingToken' in opts ? opts.forceResendingToken : null;
-      let verificationCompleted = opts && 'verificationCompleted' in opts ? opts.verificationCompleted : null;
-      let verificationFailed = opts && 'verificationFailed' in opts ? opts.verificationFailed : null;
-      let codeSent = opts && 'codeSent' in opts ? opts.codeSent : null;
-      let codeAutoRetrievalTimeout = opts && 'codeAutoRetrievalTimeout' in opts ? opts.codeAutoRetrievalTimeout : null;
-      return async.async(dart.void, function* verifyPhoneNumber() {
-        dart.throw(new core.UnimplementedError.new("verifyPhoneNumber"));
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 300000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scopesRoute",
+        [_Location_column]: 7,
+        [_Location_line]: 117,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "explicitChildNodes",
+        [_Location_column]: 7,
+        [_Location_line]: 118,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 119,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T$._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 116,
+        [_Location_file]: "file:///C:/flutter/packages/flutter/lib/src/material/page.dart"
       });
     }
-    confirmPasswordReset(app, oobCode, newPassword) {
-      return async.async(dart.void, (function* confirmPasswordReset() {
-        let auth = this[_getAuth](app);
-        yield auth.confirmPasswordReset(oobCode, newPassword);
-      }).bind(this));
+  }, false);
+  var C = Array(6).fill(void 0);
+  var I = [
+    "file:///C:/flutter/packages/flutter/lib/src/material/page.dart",
+    "package:flutter/src/material/page.dart"
+  ];
+  var builder$ = dart.privateName(page, "MaterialPageRoute.builder");
+  var maintainState$ = dart.privateName(page, "MaterialPageRoute.maintainState");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const _is_MaterialRouteTransitionMixin_default = Symbol('_is_MaterialRouteTransitionMixin_default');
+  page.MaterialRouteTransitionMixin$ = dart.generic(T => {
+    class MaterialRouteTransitionMixin extends pages.PageRoute$(T) {}
+    MaterialRouteTransitionMixin[dart.mixinOn] = PageRoute => class MaterialRouteTransitionMixin extends PageRoute {
+      get transitionDuration() {
+        return C[0] || CT.C0;
+      }
+      get barrierColor() {
+        return null;
+      }
+      get barrierLabel() {
+        return null;
+      }
+      canTransitionTo(nextRoute) {
+        if (nextRoute == null) dart.nullFailed(I[0], 94, 49, "nextRoute");
+        return page.MaterialRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog) || route.CupertinoRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog);
+      }
+      buildPage(context, animation, secondaryAnimation) {
+        if (context == null) dart.nullFailed(I[0], 102, 18, "context");
+        if (animation == null) dart.nullFailed(I[0], 103, 23, "animation");
+        if (secondaryAnimation == null) dart.nullFailed(I[0], 104, 23, "secondaryAnimation");
+        let result = this.buildContent(context);
+        if (!dart.test(dart.fn(() => {
+          if (result == null) {
+            dart.throw(assertions.FlutterError.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null.\n" + "Route builders must never return null."));
+          }
+          return true;
+        }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 107, 12, "() {\r\n      if (result == null) {\r\n        throw FlutterError(\r\n          'The builder for route \"${settings.name}\" returned null.\\n'\r\n          'Route builders must never return null.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+        return new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: result, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
+      }
+      buildTransitions(context, animation, secondaryAnimation, child) {
+        if (context == null) dart.nullFailed(I[0], 124, 40, "context");
+        if (animation == null) dart.nullFailed(I[0], 124, 67, "animation");
+        if (secondaryAnimation == null) dart.nullFailed(I[0], 124, 96, "secondaryAnimation");
+        if (child == null) dart.nullFailed(I[0], 124, 123, "child");
+        let theme = theme$.Theme.of(context).pageTransitionsTheme;
+        return theme.buildTransitions(T, this, context, animation, secondaryAnimation, child);
+      }
+    };
+    dart.addTypeTests(MaterialRouteTransitionMixin);
+    MaterialRouteTransitionMixin.prototype[_is_MaterialRouteTransitionMixin_default] = true;
+    dart.addTypeCaches(MaterialRouteTransitionMixin);
+    MaterialRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
+    dart.setMethodSignature(MaterialRouteTransitionMixin, () => ({
+      __proto__: dart.getMethods(MaterialRouteTransitionMixin.__proto__),
+      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation.Animation$(core.double), animation.Animation$(core.double)])
+    }));
+    dart.setGetterSignature(MaterialRouteTransitionMixin, () => ({
+      __proto__: dart.getGetters(MaterialRouteTransitionMixin.__proto__),
+      transitionDuration: core.Duration,
+      barrierColor: dart.nullable(ui.Color),
+      barrierLabel: dart.nullable(core.String)
+    }));
+    dart.setLibraryUri(MaterialRouteTransitionMixin, I[1]);
+    return MaterialRouteTransitionMixin;
+  });
+  page.MaterialRouteTransitionMixin = page.MaterialRouteTransitionMixin$();
+  dart.addTypeTests(page.MaterialRouteTransitionMixin, _is_MaterialRouteTransitionMixin_default);
+  const _is_MaterialPageRoute_default = Symbol('_is_MaterialPageRoute_default');
+  page.MaterialPageRoute$ = dart.generic(T => {
+    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
+      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
+    class MaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
+      get builder() {
+        return this[builder$];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      get maintainState() {
+        return this[maintainState$];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      buildContent(context) {
+        let t0;
+        if (context == null) dart.nullFailed(I[0], 53, 36, "context");
+        t0 = context;
+        return this.builder(t0);
+      }
+      get debugLabel() {
+        return dart.str(super.debugLabel) + "(" + dart.str(this.settings.name) + ")";
+      }
     }
-  };
-  (firebase_auth_web.FirebaseAuthWeb.new = function() {
-    firebase_auth_web.FirebaseAuthWeb.__proto__.new.call(this);
-    ;
-  }).prototype = firebase_auth_web.FirebaseAuthWeb.prototype;
-  dart.addTypeTests(firebase_auth_web.FirebaseAuthWeb);
-  dart.addTypeCaches(firebase_auth_web.FirebaseAuthWeb);
-  dart.setMethodSignature(firebase_auth_web.FirebaseAuthWeb, () => ({
-    __proto__: dart.getMethods(firebase_auth_web.FirebaseAuthWeb.__proto__),
-    [_getAuth]: dart.fnType(dart.legacy(auth.Auth), [dart.legacy(core.String)]),
-    [_fromJsAdditionalUserInfo]: dart.fnType(dart.legacy(firebase_auth_platform_interface.PlatformAdditionalUserInfo), [dart.legacy(auth.AdditionalUserInfo)]),
-    [_fromJsUserInfo]: dart.fnType(dart.legacy(firebase_auth_platform_interface.PlatformUserInfo), [dart.legacy(auth.UserInfo$(dart.legacy(dart.anonymousJSType("UserInfoJsImpl"))))]),
-    [_fromJsUser]: dart.fnType(dart.legacy(firebase_auth_platform_interface.PlatformUser), [dart.legacy(auth.User)]),
-    [_fromJsUserCredential]: dart.fnType(dart.legacy(firebase_auth_platform_interface.PlatformAuthResult), [dart.legacy(auth.UserCredential)]),
-    [_fromJsIdTokenResult]: dart.fnType(dart.legacy(firebase_auth_platform_interface.PlatformIdTokenResult), [dart.legacy(auth.IdTokenResult)]),
-    [_getCurrentUserOrThrow]: dart.fnType(dart.legacy(auth.User), [dart.legacy(auth.Auth)]),
-    [_getCredential]: dart.fnType(dart.legacy(dart.anonymousJSType("OAuthCredential")), [dart.legacy(firebase_auth_platform_interface.AuthCredential)])
-  }));
-  dart.setLibraryUri(firebase_auth_web.FirebaseAuthWeb, I[0]);
-  dart.trackLibraries("packages/firebase_auth_web/firebase_auth_web.dart", {
-    "package:firebase_auth_web/firebase_auth_web.dart": firebase_auth_web
+    (MaterialPageRoute.new = function(opts) {
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      if (builder == null) dart.nullFailed(I[0], 38, 19, "builder");
+      let settings = opts && 'settings' in opts ? opts.settings : null;
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      if (maintainState == null) dart.nullFailed(I[0], 40, 10, "maintainState");
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      if (fullscreenDialog == null) dart.nullFailed(I[0], 41, 10, "fullscreenDialog");
+      this[builder$] = builder;
+      this[maintainState$] = maintainState;
+      if (!(builder != null)) dart.assertFailed(null, I[0], 42, 15, "builder != null");
+      if (!(maintainState != null)) dart.assertFailed(null, I[0], 43, 15, "maintainState != null");
+      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 44, 15, "fullscreenDialog != null");
+      MaterialPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
+      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 46, 12, "opaque");
+    }).prototype = MaterialPageRoute.prototype;
+    dart.addTypeTests(MaterialPageRoute);
+    MaterialPageRoute.prototype[_is_MaterialPageRoute_default] = true;
+    dart.addTypeCaches(MaterialPageRoute);
+    dart.setMethodSignature(MaterialPageRoute, () => ({
+      __proto__: dart.getMethods(MaterialPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(MaterialPageRoute, I[1]);
+    dart.setFieldSignature(MaterialPageRoute, () => ({
+      __proto__: dart.getFields(MaterialPageRoute.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
+      maintainState: dart.finalFieldType(core.bool)
+    }));
+    return MaterialPageRoute;
+  });
+  page.MaterialPageRoute = page.MaterialPageRoute$();
+  dart.addTypeTests(page.MaterialPageRoute, _is_MaterialPageRoute_default);
+  var child$ = dart.privateName(page, "MaterialPage.child");
+  var maintainState$0 = dart.privateName(page, "MaterialPage.maintainState");
+  var fullscreenDialog$ = dart.privateName(page, "MaterialPage.fullscreenDialog");
+  const _is_MaterialPage_default = Symbol('_is_MaterialPage_default');
+  page.MaterialPage$ = dart.generic(T => {
+    var _PageBasedMaterialPageRouteOfT = () => (_PageBasedMaterialPageRouteOfT = dart.constFn(page._PageBasedMaterialPageRoute$(T)))();
+    class MaterialPage extends navigator.Page$(T) {
+      get child() {
+        return this[child$];
+      }
+      set child(value) {
+        super.child = value;
+      }
+      get maintainState() {
+        return this[maintainState$0];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      get fullscreenDialog() {
+        return this[fullscreenDialog$];
+      }
+      set fullscreenDialog(value) {
+        super.fullscreenDialog = value;
+      }
+      createRoute(context) {
+        if (context == null) dart.nullFailed(I[0], 175, 37, "context");
+        return new (_PageBasedMaterialPageRouteOfT()).new({page: this});
+      }
+    }
+    (MaterialPage.new = function(opts) {
+      let child = opts && 'child' in opts ? opts.child : null;
+      if (child == null) dart.nullFailed(I[0], 153, 19, "child");
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      if (maintainState == null) dart.nullFailed(I[0], 154, 10, "maintainState");
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      if (fullscreenDialog == null) dart.nullFailed(I[0], 155, 10, "fullscreenDialog");
+      let key = opts && 'key' in opts ? opts.key : null;
+      let name = opts && 'name' in opts ? opts.name : null;
+      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
+      let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
+      this[child$] = child;
+      this[maintainState$0] = maintainState;
+      this[fullscreenDialog$] = fullscreenDialog;
+      if (!(child != null)) dart.assertFailed(null, I[0], 160, 15, "child != null");
+      if (!(maintainState != null)) dart.assertFailed(null, I[0], 161, 15, "maintainState != null");
+      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 162, 15, "fullscreenDialog != null");
+      MaterialPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments, restorationId: restorationId});
+      ;
+    }).prototype = MaterialPage.prototype;
+    dart.addTypeTests(MaterialPage);
+    MaterialPage.prototype[_is_MaterialPage_default] = true;
+    dart.addTypeCaches(MaterialPage);
+    dart.setMethodSignature(MaterialPage, () => ({
+      __proto__: dart.getMethods(MaterialPage.__proto__),
+      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
+    }));
+    dart.setLibraryUri(MaterialPage, I[1]);
+    dart.setFieldSignature(MaterialPage, () => ({
+      __proto__: dart.getFields(MaterialPage.__proto__),
+      child: dart.finalFieldType(framework.Widget),
+      maintainState: dart.finalFieldType(core.bool),
+      fullscreenDialog: dart.finalFieldType(core.bool)
+    }));
+    return MaterialPage;
+  });
+  page.MaterialPage = page.MaterialPage$();
+  dart.addTypeTests(page.MaterialPage, _is_MaterialPage_default);
+  var _page = dart.privateName(page, "_page");
+  const _is__PageBasedMaterialPageRoute_default = Symbol('_is__PageBasedMaterialPageRoute_default');
+  page._PageBasedMaterialPageRoute$ = dart.generic(T => {
+    var MaterialPageOfT = () => (MaterialPageOfT = dart.constFn(page.MaterialPage$(T)))();
+    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
+      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
+    class _PageBasedMaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
+      get [_page]() {
+        return MaterialPageOfT().as(this.settings);
+      }
+      buildContent(context) {
+        if (context == null) dart.nullFailed(I[0], 195, 36, "context");
+        return this[_page].child;
+      }
+      get maintainState() {
+        return this[_page].maintainState;
+      }
+      get fullscreenDialog() {
+        return this[_page].fullscreenDialog;
+      }
+      get debugLabel() {
+        return dart.str(super.debugLabel) + "(" + dart.str(this[_page].name) + ")";
+      }
+    }
+    (_PageBasedMaterialPageRoute.new = function(opts) {
+      let page = opts && 'page' in opts ? opts.page : null;
+      if (page == null) dart.nullFailed(I[0], 186, 30, "page");
+      if (!(page != null)) dart.assertFailed(null, I[0], 187, 15, "page != null");
+      _PageBasedMaterialPageRoute.__proto__.new.call(this, {settings: page});
+      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 189, 12, "opaque");
+    }).prototype = _PageBasedMaterialPageRoute.prototype;
+    dart.addTypeTests(_PageBasedMaterialPageRoute);
+    _PageBasedMaterialPageRoute.prototype[_is__PageBasedMaterialPageRoute_default] = true;
+    dart.addTypeCaches(_PageBasedMaterialPageRoute);
+    dart.setMethodSignature(_PageBasedMaterialPageRoute, () => ({
+      __proto__: dart.getMethods(_PageBasedMaterialPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setGetterSignature(_PageBasedMaterialPageRoute, () => ({
+      __proto__: dart.getGetters(_PageBasedMaterialPageRoute.__proto__),
+      [_page]: page.MaterialPage$(T),
+      maintainState: core.bool,
+      fullscreenDialog: core.bool
+    }));
+    dart.setLibraryUri(_PageBasedMaterialPageRoute, I[1]);
+    return _PageBasedMaterialPageRoute;
+  });
+  page._PageBasedMaterialPageRoute = page._PageBasedMaterialPageRoute$();
+  dart.addTypeTests(page._PageBasedMaterialPageRoute, _is__PageBasedMaterialPageRoute_default);
+  dart.trackLibraries("packages/flutter/src/material/page.dart", {
+    "package:flutter/src/material/page.dart": page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["firebase_auth_web.dart"],"names":[],"mappings":"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","file":"../../../../../../packages/firebase_auth_web/firebase_auth_web.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAoFqC;MAAiC;;AAGzC;MAAI;;AAGH;MAAI;;YAGc;AAE5C,cAAkB,AAChB,sCADM,SAAS,gBAAqC,AAAU,SAAD,sBAC/C,uCAAV,SAAS,gBAAsC,AAAU,SAAD;MAChE;gBAIe,SACK,WACA;YAFL;YACK;YACA;AAEL,qBAAS,kBAAa,OAAO;AAC1C,uBAAO,AAQN;AAPC,cAAI,AAAO,MAAD;AAIP,YAHD,WAAM,4BAAY,AAChB,sCAA0B,AAAS,sBAAK,wBACxC;;AAGJ,gBAAO;;AAET,cAAO,uCACQ,0BACO,aACb,MAAM;MAEjB;uBAGqC,SAA2B,WAA6B,oBAA2B;YAAnF;YAA2B;YAA6B;YAA2B;AAC3F,oBAAc,AAAY,gBAAT,OAAO;AACnD,cAAO,AAAM,MAAD,qBAAqB,MAAM,OAAO,EAAE,SAAS,EAAE,kBAAkB,EAAE,KAAK;MACtF;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA7EoB;;;;;;MAMT;;;;;;mBAHsB;;;AAAY,aAAQ,OAAO;cAAf,AAAO;MAAS;;AAMpC,cAAuC,UAA9B,oBAAW,eAAG,AAAS,sBAAK;MAAE;;;UArBhD;;UACC;UACV;;UACA;;MAHS;MAET;YAEK,AAAQ,OAAD;YACP,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,4DAAgB,QAAQ,oBAAoB,gBAAgB;AAC/D,qBAAO;IACT;;;;;;;;;;;;;;;;;;;;;;;;;MAuHa;;;;;;MAGF;;;;;;MAGA;;;;;;;YAGuB;AAChC,cAAO,mDAAqC;MAC9C;;;UAxBgB;;UACT;;UACA;;UACK;UACF;UACA;UACA;MANM;MACT;MACA;YAKK,AAAM,KAAD;YACL,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,kDAAW,GAAG,QAAQ,IAAI,aAAa,2BAA0B,aAAa;;IAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6BvD,cAAS,sBAAT;MAA2B;;YAGvB;AAC/B,cAAO,AAAM;MACf;;AAG0B,cAAA,AAAM;MAAa;;AAGhB,cAAA,AAAM;MAAgB;;AAG1B,cAAoC,UAA3B,oBAAW,eAAG,AAAM,oBAAK;MAAE;;;UApBlC;;YACf,AAAK,IAAD;AACX,sEAAgB,IAAI;AACvB,qBAAO;IACT","file":"../../../../../../packages/flutter/src/material/page.dart.lib.js"}');
   // Exports:
   return {
-    firebase_auth_web: firebase_auth_web
+    src__material__page: page
   };
 }));
 
-//# sourceMappingURL=firebase_auth_web.dart.lib.js.map
+//# sourceMappingURL=page.dart.lib.js.map
